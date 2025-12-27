@@ -1,0 +1,64 @@
+name: 'AppAudix Security Scan'
+description: 'Scan mobile apps (APK, AAB, IPA) for security vulnerabilities and compliance issues'
+author: 'AppAudix'
+branding:
+  icon: 'shield'
+  color: 'blue'
+
+inputs:
+  api-key:
+    description: 'AppAudix API key (from https://pciappscan.com/settings)'
+    required: true
+  file:
+    description: 'Path to the mobile app file (APK, AAB, or IPA)'
+    required: true
+  frameworks:
+    description: 'Comma-separated list of compliance frameworks (pci_dss, owasp_masvs, hipaa, gdpr, soc2, nist)'
+    required: false
+    default: 'pci_dss'
+  fail-on:
+    description: 'Fail the build if issues at this severity or higher are found (critical, high, medium, low, none)'
+    required: false
+    default: 'critical'
+  upload-sarif:
+    description: 'Upload SARIF results to GitHub Code Scanning (requires security-events: write permission)'
+    required: false
+    default: 'true'
+  wait-for-completion:
+    description: 'Wait for scan to complete before continuing'
+    required: false
+    default: 'true'
+  timeout-minutes:
+    description: 'Maximum time to wait for scan completion (in minutes)'
+    required: false
+    default: '30'
+  api-url:
+    description: 'AppAudix API base URL (for enterprise/self-hosted deployments)'
+    required: false
+    default: 'https://api.appaudix.com'
+
+outputs:
+  scan-id:
+    description: 'Unique identifier for the scan'
+  status:
+    description: 'Final scan status (completed, error, cancelled)'
+  compliance-score:
+    description: 'Overall compliance score (0-100)'
+  risk-level:
+    description: 'Risk level (CRITICAL, HIGH, MEDIUM, LOW, MINIMAL)'
+  critical-count:
+    description: 'Number of critical severity issues'
+  high-count:
+    description: 'Number of high severity issues'
+  medium-count:
+    description: 'Number of medium severity issues'
+  low-count:
+    description: 'Number of low severity issues'
+  report-url:
+    description: 'URL to view the full scan report'
+  sarif-file:
+    description: 'Path to the downloaded SARIF file (if upload-sarif is true)'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

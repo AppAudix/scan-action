@@ -289,44 +289,16 @@ Security issues will appear as annotations directly on the PR:
 
 ## Getting an API Key
 
-1. Sign up at [pciappscan.com](https://pciappscan.com)
+1. Sign up at [appaudix.com](https://appaudix.com)
 2. Go to Settings → API Keys
 3. Generate a new API key
 4. Add it as a repository secret: `APPAUDIX_API_KEY`
 
 ## Support
 
-- **Documentation**: [docs.appaudix.com](https://docs.appaudix.com)
-- **Issues**: [github.com/appaudix/scan-action/issues](https://github.com/appaudix/scan-action/issues)
+- **Documentation**: [appaudix.com/apidocs](https://appaudix.com/apidocs)
+- **Issues**: [github.com/AppAudix/scan-action/issues](https://github.com/AppAudix/scan-action/issues)
 - **Email**: support@appaudix.com
-
-## Repository Setup
-
-To publish this action to GitHub Marketplace:
-
-1. Create a new public repository: `appaudix/scan-action`
-
-2. Push the contents of this directory:
-   ```bash
-   cd integrations/github-action
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin git@github.com:appaudix/scan-action.git
-   git push -u origin main
-   ```
-
-3. The GitHub workflow will automatically build the `dist/` folder
-
-4. Create a release with tag `v1` to make it available as `uses: appaudix/scan-action@v1`
-
-### Local Development
-
-```bash
-npm install
-npm run build    # Builds dist/index.js
-npm test         # Run tests
-```
 
 ## License
 
